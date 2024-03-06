@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ version }}の使用率</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<!--style>
+        
+    /* キャラクター画像と名前を横並びにするスタイル */
+    /*.character {
+        display: inline-flex;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    .character img {
+        width: 135px;
+        height: 135px;
+        margin-right: 20px;
+    }
+
+    .character div {
+        display: flex;
+        flex-direction: column;
+        margin: 0 auto;
+    }*/
+</style-->
+<body>
+    <h1>{{ version }}の編成使用率TOP20</h1>
+    <ul>
+        {% for team_name, characters in teams.items() %}
+            <h2>{{ team_name }}</h2>
+            {% for character in characters %}
+                <div class="character">
+                    {{ character }}
+                    <!-- 炎元素　a -->
+                    {% if character == 'リネ' %}
+                        <img src="{{ url_for('static', filename='リネ.jpg') }}" alt="a 1">
+                    {% elif character == 'ディシア' %}
+                        <img src="{{ url_for('static', filename='ディシア.jpg') }}" alt="a 2">
+                    {% elif character == '宵宮(よいみや)' %}
+                        <img src="{{ url_for('static', filename='宵宮.jpg') }}" alt="a 3">
+                    {% elif character == 'フータオ(胡桃)' %}
+                        <img src="{{ url_for('static', filename='胡桃.jpg') }}" alt="a 4" >
+                    {% elif character == 'クレー' %}
+                        <img src="{{ url_for('static', filename='クレー.jpg') }}" alt="a 5">
+                    {% elif character == 'ディルック' %}
+                        <img src="{{ url_for('static', filename='ディルック.jpg') }}" alt="a 6">
+                    {% elif character == '嘉明(がみん)' %}
+                        <img src="{{ url_for('static', filename='嘉明.jpg') }}" alt="a 7">
+                    {% elif character == 'シュヴルーズ' %}
+                        <img src="{{ url_for('static', filename='シュヴルーズ.jpg') }}" alt="a 8">
+                    {% elif character == 'トーマ' %}
+                        <img src="{{ url_for('static', filename='トーマ.jpg') }}" alt="a 9">
+                    {% elif character == 'ベネット' %}
+                        <img src="{{ url_for('static', filename='ベネット.jpg') }}" alt="a 10">
+                    {% elif character == 'アンバー' %}
+                        <img src="{{ url_for('static', filename='アンバー.jpg') }}" alt="a 11">
+                    {% elif character == '辛炎(しんえん)' %}
+                        <img src="{{ url_for('static', filename='辛炎.jpg') }}" alt="a 12">
+                    {% elif character == '香菱(しゃんりん)' %}
+                        <img src="{{ url_for('static', filename='香菱.jpg') }}" alt="a 13">
+                    {% elif character == '煙緋(えんひ)' %}
+                        <img src="{{ url_for('static', filename='煙緋.jpg') }}" alt="a 14">
+                    <!-- 水元素 b -->
+                    {% elif character == 'フリーナ' %}
+                        <img src="{{ url_for('static', filename='フリーナ.jpg') }}" alt="b 1">
+                    {% elif character == 'ヌヴィレット' %}
+                        <img src="{{ url_for('static', filename='ヌヴィレット.jpg') }}" alt="b 2">
+                    {% elif character == 'ニィロウ' %}
+                        <img src="{{ url_for('static', filename='ニィロウ.jpg') }}" alt="b 3">
+                    {% elif character == 'イェラン(夜蘭)' %}
+                        <img src="{{ url_for('static', filename='夜蘭.jpg') }}" alt="b 4">
+                    {% elif character == '神里綾人' %}
+                        <img src="{{ url_for('static', filename='神里綾人.jpg') }}" alt="b 5">
+                    {% elif character == '珊瑚宮心海' %}
+                        <img src="{{ url_for('static', filename='珊瑚宮心海.jpg') }}" alt="b 6">
+                    {% elif character == 'モナ' %}
+                        <img src="{{ url_for('static', filename='モナ.jpg') }}" alt="b 7">
+                    {% elif character == 'タルタリヤ' %}
+                        <img src="{{ url_for('static', filename='タルタリヤ.jpg') }}" alt="b 8">
+                    {% elif character == 'キャンディス' %}
+                        <img src="{{ url_for('static', filename='キャンディス.jpg') }}" alt="b 9">
+                    {% elif character == 'バーバラ' %}
+                        <img src="{{ url_for('static', filename='バーバラ.jpg') }}" alt="b 10">
+                    {% elif character == '行秋(ゆくあき)' %}
+                        <img src="{{ url_for('static', filename='行秋.jpg') }}" alt="b 11">
+                    <!-- 氷元素 c -->
+                    {% elif character == 'リオセスリ' %}
+                        <img src="{{ url_for('static', filename='リオセスリ.jpg') }}" alt="c 1">
+                    {% elif character == '申鶴(しんかく)' %}
+                        <img src="{{ url_for('static', filename='申鶴.jpg') }}" alt="c 2">
+                    {% elif character == 'アーロイ' %}
+                        <img src="{{ url_for('static', filename='アーロイ.jpg') }}" alt="c 3">
+                    {% elif character == '神里綾華' %}
+                        <img src="{{ url_for('static', filename='神里綾華.jpg') }}" alt="c 4">
+                    {% elif character == 'エウルア' %}
+                        <img src="{{ url_for('static', filename='エウルア.jpg') }}" alt="c 5">
+                    {% elif character == '七七(なな)' %}
+                        <img src="{{ url_for('static', filename='七七.jpg') }}" alt="c 6">
+                    {% elif character == '甘雨(かんう)' %}
+                        <img src="{{ url_for('static', filename='甘雨.jpg') }}" alt="c 7">
+                    {% elif character == 'シャルロット' %}
+                        <img src="{{ url_for('static', filename='シャルロット.jpg') }}" alt="c 8">
+                    {% elif character == 'フレミネ' %}
+                        <img src="{{ url_for('static', filename='フレミネ.jpg') }}" alt="c 9">
+                    {% elif character == 'ミカ' %}
+                        <img src="{{ url_for('static', filename='ミカ.jpg') }}" alt="c 10">
+                    {% elif character == 'レイラ' %}
+                        <img src="{{ url_for('static', filename='レイラ.jpg') }}" alt="c 11">
+                    {% elif character == 'ガイア' %}
+                        <img src="{{ url_for('static', filename='ガイア.jpg') }}" alt="c 12">
+                    {% elif character == 'ロサリア' %}
+                        <img src="{{ url_for('static', filename='ロサリア.jpg') }}" alt="c 13">
+                    {% elif character == 'ディオナ' %}
+                        <img src="{{ url_for('static', filename='ミカ.jpg') }}" alt="c 14">
+                    {% elif character == '重雲(ちょううん)' %}
+                        <img src="{{ url_for('static', filename='重雲.jpg') }}" alt="c 15">
+                    <!-- 雷元素 d -->
+                    {% elif character == 'セノ' %}
+                        <img src="{{ url_for('static', filename='セノ.jpg') }}" alt="d 1">
+                    {% elif character == '八重神子(やえみこ)' %}
+                        <img src="{{ url_for('static', filename='八重神子.jpg') }}" alt="d 2">
+                    {% elif character == '雷電将軍' %}
+                        <img src="{{ url_for('static', filename='雷電将軍.jpg') }}" alt="d 3">
+                    {% elif character == '刻晴(こくせい)' %}
+                        <img src="{{ url_for('static', filename='刻晴.jpg') }}" alt="d 4">
+                    {% elif character == 'ドリー' %}
+                        <img src="{{ url_for('static', filename='ドリー.jpg') }}" alt="d 5">
+                    {% elif character == '久岐忍(くきしのぶ)' %}
+                        <img src="{{ url_for('static', filename='久岐忍.jpg') }}" alt="d 6">
+                    {% elif character == '九条裟羅(くじょうさら)' %}
+                        <img src="{{ url_for('static', filename='九条裟羅.jpg') }}" alt="d 7">
+                    {% elif character == 'レザー' %}
+                        <img src="{{ url_for('static', filename='レザー.jpg') }}" alt="d 8">
+                    {% elif character == 'リサ' %}
+                        <img src="{{ url_for('static', filename='リサ.jpg') }}" alt="d 9">
+                    {% elif character == 'フィッシュル' %}
+                        <img src="{{ url_for('static', filename='フィッシュル.jpg') }}" alt="d 10">
+                    {% elif character == '北斗' %}
+                        <img src="{{ url_for('static', filename='北斗.jpg') }}" alt="d 11">
+                    <!-- 風元素 e -->
+                    {% elif character == '閑雲(留雲借風真君)' %}
+                        <img src="{{ url_for('static', filename='閑雲.jpg') }}" alt="e 1">
+                    {% elif character == '放浪者(スカラマシュ)' %}
+                        <img src="{{ url_for('static', filename='放浪者.jpg') }}" alt="e 2">
+                    {% elif character == 'カズハ(楓原万葉)' %}
+                        <img src="{{ url_for('static', filename='万葉.jpg') }}" alt="e 3">
+                    {% elif character == '魈(ショウ)' %}
+                        <img src="{{ url_for('static', filename='ショウ.jpg') }}" alt="e 4">
+                    {% elif character == 'ウェンティ' %}
+                        <img src="{{ url_for('static', filename='ウェンティ.jpg') }}" alt="e 5">
+                    {% elif character == 'ジン' %}
+                        <img src="{{ url_for('static', filename='ジン.jpg') }}" alt="e 6">
+                    {% elif character == 'リネット' %}
+                        <img src="{{ url_for('static', filename='リネット.jpg') }}" alt="e 7">
+                    {% elif character == 'ファルザン' %}
+                        <img src="{{ url_for('static', filename='ファルザン.jpg') }}" alt="e 8">
+                    {% elif character == '鹿野院平蔵' %}
+                        <img src="{{ url_for('static', filename='鹿野院平蔵.jpg') }}" alt="e 9">
+                    {% elif character == '早柚(さゆ)' %}
+                        <img src="{{ url_for('static', filename='早柚(さゆ).jpg') }}" alt="e 10">
+                    {% elif character == 'スクロース' %}
+                        <img src="{{ url_for('static', filename='スクロース.jpg') }}" alt="e 11">
+                    <!-- 岩元素 f -->
+                    {% elif character == 'ナヴィア' %}
+                        <img src="{{ url_for('static', filename='ナヴィア.jpg') }}" alt="f 1">
+                    {% elif character == '荒瀧一斗(あらたきいっと)' %}
+                        <img src="{{ url_for('static', filename='荒瀧一斗.jpg') }}" alt="f 2">
+                    {% elif character == 'アルベド' %}
+                        <img src="{{ url_for('static', filename='アルベド.jpg') }}" alt="f 3">
+                    {% elif character == '鍾離(しょうり)' %}
+                        <img src="{{ url_for('static', filename='鍾離.jpg') }}" alt="f 4">
+                    {% elif character == '雲菫(うんきん)' %}
+                        <img src="{{ url_for('static', filename='雲菫.jpg') }}" alt="f 5">
+                    {% elif character == 'ゴロー' %}
+                        <img src="{{ url_for('static', filename='ゴロー.jpg') }}" alt="f 6">
+                    {% elif character == 'ノエル' %}
+                        <img src="{{ url_for('static', filename='ノエル.jpg') }}" alt="f 7">
+                    {% elif character == '凝光(ぎょうこう)' %}
+                        <img src="{{ url_for('static', filename='凝光.jpg') }}" alt="f 8">
+                    <!-- 草元素g -->
+                    {% elif character == '白朮' %}
+                        <img src="{{ url_for('static', filename='白朮.jpg') }}" alt="g 1">
+                    {% elif character == 'アルハイゼン' %}
+                        <img src="{{ url_for('static', filename='アルハイゼン.jpg') }}" alt="g 2">
+                    {% elif character == 'ナヒーダ' %}
+                        <img src="{{ url_for('static', filename='ナヒーダ.jpg') }}" alt="g 3">
+                    {% elif character == 'ティナリ' %}
+                        <img src="{{ url_for('static', filename='ティナリ.jpg') }}" alt="g 4">
+                    {% elif character == '綺良々(きらら)' %}
+                        <img src="{{ url_for('static', filename='綺良々.jpg') }}" alt="g 5">
+                    {% elif character == 'カーヴェ' %}
+                        <img src="{{ url_for('static', filename='カーヴェ.jpg') }}" alt="g 6">
+                    {% elif character == 'ヨォーヨ' %}
+                        <img src="{{ url_for('static', filename='ヨォーヨ.jpg') }}" alt="g 7">
+                    {% elif character == 'コレイ' %}
+                        <img src="{{ url_for('static', filename='コレイ.jpg') }}" alt="g 8">
+                    <!-- 旅人 z -->
+                    {% elif character == '旅人風' %}
+                        <img src="{{ url_for('static', filename='旅人風.jpg') }}" alt="z 1">
+                    {% elif character == '旅人岩' %}
+                        <img src="{{ url_for('static', filename='旅人岩.jpg') }}" alt="z 2">
+                    {% elif character == '旅人雷' %}
+                        <img src="{{ url_for('static', filename='旅人雷.jpg') }}" alt="z 3">
+                    {% elif character == '旅人草' %}
+                        <img src="{{ url_for('static', filename='旅人草.jpg') }}" alt="z 4">
+                    {% elif character == '旅人水' %}
+                        <img src="{{ url_for('static', filename='旅人水.jpg') }}" alt="z 5">
+                    {% endif %}
+                </div>
+            {% endfor %}
+        {% endfor %}
+    </ul>
+
+    <h2>全体のキャラクター使用率</h2>
+    <ul>
+        {% for character, usage in character_usage.items() %}
+            <div class="character">
+                {{ character }}
+                ({{ usage }}%)
+                <!-- 炎元素 -->
+                    {% if character == 'リネ' %}
+                        <img src="{{ url_for('static', filename='リネ.jpg') }}" alt="Image 1">
+                    {% elif character == 'ディシア' %}
+                        <img src="{{ url_for('static', filename='ディシア.jpg') }}" alt="Image 2">
+                    {% elif character == '宵宮(よいみや)' %}
+                        <img src="{{ url_for('static', filename='宵宮.jpg') }}" alt="Image 2">
+                    {% elif character == 'フータオ(胡桃)' %}
+                        <img src="{{ url_for('static', filename='胡桃.jpg') }}" alt="Image 2">
+                    {% elif character == 'クレー' %}
+                        <img src="{{ url_for('static', filename='クレー.jpg') }}" alt="Image 2">
+                    {% elif character == 'ディルック' %}
+                        <img src="{{ url_for('static', filename='ディルック.jpg') }}" alt="Image 2">
+                    {% elif character == '嘉明(がみん)' %}
+                        <img src="{{ url_for('static', filename='嘉明.jpg') }}" alt="Image 2">
+                    {% elif character == 'シュヴルーズ' %}
+                        <img src="{{ url_for('static', filename='シュヴルーズ.jpg') }}" alt="Image 2">
+                    {% elif character == 'トーマ' %}
+                        <img src="{{ url_for('static', filename='トーマ.jpg') }}" alt="Image 2">
+                    {% elif character == 'ベネット' %}
+                        <img src="{{ url_for('static', filename='ベネット.jpg') }}" alt="Image 2">
+                    {% elif character == 'アンバー' %}
+                        <img src="{{ url_for('static', filename='アンバー.jpg') }}" alt="Image 2">
+                    {% elif character == '辛炎(しんえん)' %}
+                        <img src="{{ url_for('static', filename='辛炎.jpg') }}" alt="Image 2">
+                    {% elif character == '香菱(しゃんりん)' %}
+                        <img src="{{ url_for('static', filename='香菱.jpg') }}" alt="Image 2">
+                    {% elif character == '煙緋(えんひ)' %}
+                        <img src="{{ url_for('static', filename='煙緋.jpg') }}" alt="Image 2">
+                    <!-- 水元素 -->
+                    {% elif character == 'フリーナ' %}
+                        <img src="{{ url_for('static', filename='フリーナ.jpg') }}" alt="Image 1">
+                    {% elif character == 'ヌヴィレット' %}
+                        <img src="{{ url_for('static', filename='ヌヴィレット.jpg') }}" alt="Image 2">
+                    {% elif character == 'ニィロウ' %}
+                        <img src="{{ url_for('static', filename='ニィロウ.jpg') }}" alt="Image 2">
+                    {% elif character == 'イェラン(夜蘭)' %}
+                        <img src="{{ url_for('static', filename='夜蘭.jpg') }}" alt="Image 2">
+                    {% elif character == '神里綾人' %}
+                        <img src="{{ url_for('static', filename='神里綾人.jpg') }}" alt="Image 2">
+                    {% elif character == '珊瑚宮心海' %}
+                        <img src="{{ url_for('static', filename='珊瑚宮心海.jpg') }}" alt="Image 2">
+                    {% elif character == 'モナ' %}
+                        <img src="{{ url_for('static', filename='モナ.jpg') }}" alt="Image 2">
+                    {% elif character == 'タルタリヤ' %}
+                        <img src="{{ url_for('static', filename='タルタリヤ.jpg') }}" alt="Image 2">
+                    {% elif character == 'キャンディス' %}
+                        <img src="{{ url_for('static', filename='キャンディス.jpg') }}" alt="Image 2">
+                    {% elif character == 'バーバラ' %}
+                        <img src="{{ url_for('static', filename='バーバラ.jpg') }}" alt="Image 2">
+                    {% elif character == '行秋(ゆくあき)' %}
+                        <img src="{{ url_for('static', filename='行秋.jpg') }}" alt="Image 2">
+                    <!-- 氷元素 -->
+                    {% elif character == 'リオセスリ' %}
+                        <img src="{{ url_for('static', filename='リオセスリ.jpg') }}" alt="Image 2">
+                    {% elif character == '申鶴(しんかく)' %}
+                        <img src="{{ url_for('static', filename='申鶴.jpg') }}" alt="Image 2">
+                    {% elif character == 'アーロイ' %}
+                        <img src="{{ url_for('static', filename='アーロイ.jpg') }}" alt="Image 2">
+                    {% elif character == '神里綾華' %}
+                        <img src="{{ url_for('static', filename='神里綾華.jpg') }}" alt="Image 2">
+                    {% elif character == 'エウルア' %}
+                        <img src="{{ url_for('static', filename='エウルア.jpg') }}" alt="Image 2">
+                    {% elif character == '七七(なな)' %}
+                        <img src="{{ url_for('static', filename='七七.jpg') }}" alt="Image 2">
+                    {% elif character == '甘雨(かんう)' %}
+                        <img src="{{ url_for('static', filename='甘雨.jpg') }}" alt="Image 2">
+                    {% elif character == 'シャルロット' %}
+                        <img src="{{ url_for('static', filename='シャルロット.jpg') }}" alt="Image 2">
+                    {% elif character == 'フレミネ' %}
+                        <img src="{{ url_for('static', filename='フレミネ.jpg') }}" alt="Image 2">
+                    {% elif character == 'ミカ' %}
+                        <img src="{{ url_for('static', filename='ミカ.jpg') }}" alt="Image 2">
+                    {% elif character == 'レイラ' %}
+                        <img src="{{ url_for('static', filename='レイラ.jpg') }}" alt="Image 2">
+                    {% elif character == 'ガイア' %}
+                        <img src="{{ url_for('static', filename='ガイア.jpg') }}" alt="Image 2">
+                    {% elif character == 'ロサリア' %}
+                        <img src="{{ url_for('static', filename='ロサリア.jpg') }}" alt="Image 2">
+                    {% elif character == 'ディオナ' %}
+                        <img src="{{ url_for('static', filename='ミカ.jpg') }}" alt="Image 2">
+                    {% elif character == '重雲(ちょううん)' %}
+                        <img src="{{ url_for('static', filename='重雲.jpg') }}" alt="Image 2">
+                    <!-- 雷元素 d -->
+                    {% elif character == 'セノ' %}
+                        <img src="{{ url_for('static', filename='セノ.jpg') }}" alt="d 1">
+                    {% elif character == '八重神子(やえみこ)' %}
+                        <img src="{{ url_for('static', filename='八重神子.jpg') }}" alt="d 2">
+                    {% elif character == '雷電将軍' %}
+                        <img src="{{ url_for('static', filename='雷電将軍.jpg') }}" alt="d 3">
+                    {% elif character == '刻晴(こくせい)' %}
+                        <img src="{{ url_for('static', filename='刻晴.jpg') }}" alt="d 4">
+                    {% elif character == 'ドリー' %}
+                        <img src="{{ url_for('static', filename='ドリー.jpg') }}" alt="d 5">
+                    {% elif character == '久岐忍(くきしのぶ)' %}
+                        <img src="{{ url_for('static', filename='久岐忍.jpg') }}" alt="d 6">
+                    {% elif character == '九条裟羅(くじょうさら)' %}
+                        <img src="{{ url_for('static', filename='九条裟羅.jpg') }}" alt="d 7">
+                    {% elif character == 'レザー' %}
+                        <img src="{{ url_for('static', filename='レザー.jpg') }}" alt="d 8">
+                    {% elif character == 'リサ' %}
+                        <img src="{{ url_for('static', filename='リサ.jpg') }}" alt="d 9">
+                    {% elif character == 'フィッシュル' %}
+                        <img src="{{ url_for('static', filename='フィッシュル.jpg') }}" alt="d 10">
+                    {% elif character == '北斗' %}
+                        <img src="{{ url_for('static', filename='北斗.jpg') }}" alt="d 11">
+                    <!-- 風元素 e -->
+                    {% elif character == '閑雲(留雲借風真君)' %}
+                        <img src="{{ url_for('static', filename='閑雲.jpg') }}" alt="e 1">
+                    {% elif character == '放浪者(スカラマシュ)' %}
+                        <img src="{{ url_for('static', filename='放浪者.jpg') }}" alt="e 2">
+                    {% elif character == 'カズハ(楓原万葉)' %}
+                        <img src="{{ url_for('static', filename='万葉.jpg') }}" alt="e 3">
+                    {% elif character == '魈(ショウ)' %}
+                        <img src="{{ url_for('static', filename='ショウ.jpg') }}" alt="e 4">
+                    {% elif character == 'ウェンティ' %}
+                        <img src="{{ url_for('static', filename='ウェンティ.jpg') }}" alt="e 5">
+                    {% elif character == 'ジン' %}
+                        <img src="{{ url_for('static', filename='ジン.jpg') }}" alt="e 6">
+                    {% elif character == 'リネット' %}
+                        <img src="{{ url_for('static', filename='リネット.jpg') }}" alt="e 7">
+                    {% elif character == 'ファルザン' %}
+                        <img src="{{ url_for('static', filename='ファルザン.jpg') }}" alt="e 8">
+                    {% elif character == '鹿野院平蔵' %}
+                        <img src="{{ url_for('static', filename='鹿野院平蔵.jpg') }}" alt="e 9">
+                    {% elif character == '早柚(さゆ)' %}
+                        <img src="{{ url_for('static', filename='早柚(さゆ).jpg') }}" alt="e 10">
+                    {% elif character == 'スクロース' %}
+                        <img src="{{ url_for('static', filename='スクロース.jpg') }}" alt="e 11">
+                    <!-- 岩元素 f -->
+                    {% elif character == 'ナヴィア' %}
+                        <img src="{{ url_for('static', filename='ナヴィア.jpg') }}" alt="f 1">
+                    {% elif character == '荒瀧一斗(あらたきいっと)' %}
+                        <img src="{{ url_for('static', filename='荒瀧一斗.jpg') }}" alt="f 2">
+                    {% elif character == 'アルベド' %}
+                        <img src="{{ url_for('static', filename='アルベド.jpg') }}" alt="f 3">
+                    {% elif character == '鍾離(しょうり)' %}
+                        <img src="{{ url_for('static', filename='鍾離.jpg') }}" alt="f 4">
+                    {% elif character == '雲菫(うんきん)' %}
+                        <img src="{{ url_for('static', filename='雲菫.jpg') }}" alt="f 5">
+                    {% elif character == 'ゴロー' %}
+                        <img src="{{ url_for('static', filename='ゴロー.jpg') }}" alt="f 6">
+                    {% elif character == 'ノエル' %}
+                        <img src="{{ url_for('static', filename='ノエル.jpg') }}" alt="f 7">
+                    {% elif character == '凝光(ぎょうこう)' %}
+                        <img src="{{ url_for('static', filename='凝光.jpg') }}" alt="f 8">
+                    <!-- 草元素g -->
+                    {% elif character == '白朮' %}
+                        <img src="{{ url_for('static', filename='白朮.jpg') }}" alt="g 1">
+                    {% elif character == 'アルハイゼン' %}
+                        <img src="{{ url_for('static', filename='アルハイゼン.jpg') }}" alt="g 2">
+                    {% elif character == 'ナヒーダ' %}
+                        <img src="{{ url_for('static', filename='ナヒーダ.jpg') }}" alt="g 3">
+                    {% elif character == 'ティナリ' %}
+                        <img src="{{ url_for('static', filename='ティナリ.jpg') }}" alt="g 4">
+                    {% elif character == '綺良々(きらら)' %}
+                        <img src="{{ url_for('static', filename='綺良々.jpg') }}" alt="g 5">
+                    {% elif character == 'カーヴェ' %}
+                        <img src="{{ url_for('static', filename='カーヴェ.jpg') }}" alt="g 6">
+                    {% elif character == 'ヨォーヨ' %}
+                        <img src="{{ url_for('static', filename='ヨォーヨ.jpg') }}" alt="g 7">
+                    {% elif character == 'コレイ' %}
+                        <img src="{{ url_for('static', filename='コレイ.jpg') }}" alt="g 8">
+                    <!-- 旅人 z -->
+                    {% elif character == '旅人風' %}
+                        <img src="{{ url_for('static', filename='旅人風.jpg') }}" alt="z 1">
+                    {% elif character == '旅人岩' %}
+                        <img src="{{ url_for('static', filename='旅人岩.jpg') }}" alt="z 2">
+                    {% elif character == '旅人雷' %}
+                        <img src="{{ url_for('static', filename='旅人雷.jpg') }}" alt="z 3">
+                    {% elif character == '旅人草' %}
+                        <img src="{{ url_for('static', filename='旅人草.jpg') }}" alt="z 4">
+                    {% elif character == '旅人水' %}
+                        <img src="{{ url_for('static', filename='旅人水.jpg') }}" alt="z 5">
+                    {% endif %}
+            </div>
+        {% endfor %}
+        </ul>
+</body>
+</html>

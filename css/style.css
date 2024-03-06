@@ -1,0 +1,92 @@
+body {
+  min-height: 100%;
+  background-image: url(rasenback.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+}
+
+h1 {
+  font-family: serif;
+  background-image: url(螺旋背景画像.jpg);
+  background-position: 50% 30%;/*背景画像の位置*/
+  background-size: cover;
+  color:rgb(255, 255, 255);
+  width: 65%;
+  text-align: center;
+  margin: 0 auto; /* 左右中央揃え */
+}
+
+
+h2 {
+  font-family: sans-serif;
+  color: rgb(226, 183, 255);
+  background-color: #332b2b;
+  width: 65%;
+  text-align:center;
+  margin: 0 auto;
+}
+
+li{
+  text-align:center;
+  list-style:none;
+}
+
+ul {
+  text-align: center;
+}
+
+.btn-square {
+  display: inline-block;
+  padding: 0.5em 1em;
+  text-decoration: none;
+  background: #000000;/*ボタン色*/
+  color: #FFF;
+  border-bottom: solid 4px #627295;
+  border-radius: 25px;
+  height: 75px;
+  width: 150px;
+  margin-bottom: 20px;
+  text-align:center;
+}
+.btn-square:active {
+  /*ボタンを押したとき*/
+  -webkit-transform: translateY(4px);
+  transform: translateY(4px);/*下に動く*/
+  border-bottom: none;/*線を消す*/
+}
+
+div {
+  color: white; /* キャラクター名の文字色を設定 */
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); /* 文字に影を追加 */
+  background-color: rgba(0, 0, 0, 0.5); /* 背景色を設定 */
+  padding: 5px; /* パディングを追加して文字と周囲の間隔を調整 */
+  border-radius: 5px; /* 角丸を追加 */
+  display: inline-block; /* インラインブロック要素として表示 */
+  margin: 0 auto;
+}
+
+/*.character {
+  display: flex;
+  justify-content: center;
+}*/
+
+/*キャラクターの画像と名前の位置*/
+.character {
+  display: inline-flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.character img {
+  width: 135px;
+  height: 135px;
+  margin-right: 20px;
+}
+
+.character div {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+}
