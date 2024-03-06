@@ -67,11 +67,6 @@ div {
   margin: 0 auto;
 }
 
-/*.character {
-  display: flex;
-  justify-content: center;
-}*/
-
 /*キャラクターの画像と名前の位置*/
 .character {
   display: inline-flex;
